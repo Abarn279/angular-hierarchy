@@ -15,7 +15,7 @@ $(".acc-city-hierarchy")
 var angular = require("angular");
 
 angular
-    .module('app', [])
+    .module('app', []);
 
 // controllers
 require("./controllers/hierarchyController.js");

@@ -61,7 +61,7 @@
 	var angular = __webpack_require__(2);
 	
 	angular
-	    .module('app', [])
+	    .module('app', []);
 	
 	// controllers
 	__webpack_require__(4);
