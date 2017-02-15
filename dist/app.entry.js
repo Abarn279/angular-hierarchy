@@ -43454,7 +43454,7 @@
 	
 	angular
 	    .module('app')
-	    .controller('hierarchyController', HierarchyController)
+	    .controller('hierarchyController', HierarchyController);
 	
 	HierarchyController.$inject = ["dataService"];
 	
