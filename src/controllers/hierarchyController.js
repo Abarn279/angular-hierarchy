@@ -1,3 +1,5 @@
+var _ = require("lodash");
+
 angular
     .module('app')
     .controller('hierarchyController', HierarchyController)
@@ -7,11 +9,17 @@ HierarchyController.$inject = ["dataService"];
 function HierarchyController(ds) {
     var vm = this;
 
+    // Props
     vm.data = ds.getData();
     vm.activeData = vm.data;
     vm.searchTerm = "";
+    vm.selectedItems = [];
 
-    vm.search = function() {
+    // Functions
+    vm.whenClicked = whenClicked;
+    vm.search = search;
+
+    function search() {
         if (!vm.searchTerm) {
             vm.activeData = vm.data.slice();
             return;
@@ -23,6 +31,14 @@ function HierarchyController(ds) {
             var filtered = filterTree(angular.copy(tree), vm.searchTerm);
             if (filtered)
                 vm.activeData.push(filtered);
+        }
+    }
+
+    function whenClicked(item) {
+        if (!_.some(vm.selectedItems, function(i) {
+                return item.id === i.id;
+            })) {
+            vm.selectedItems.push(item);
         }
     }
 
@@ -46,9 +62,5 @@ function HierarchyController(ds) {
         }
 
         return null;
-    }
-
-    vm.whenClicked = function(item) {
-        console.log(item);
     }
 }

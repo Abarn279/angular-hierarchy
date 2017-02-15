@@ -9,10 +9,12 @@ angular
                 whenclicked: '='
             },
             controllerAs: 'vm',
-            restrict: 'EA',
+            restrict: 'E',
             bindToController: true
         };
     });
+
+CityHierarchyController.$inject = ["$scope"];
 
 function CityHierarchyController($scope) {
     var vm = this;
@@ -21,4 +23,3 @@ function CityHierarchyController($scope) {
         vm.whenclicked(item);
     }
 }
-CityHierarchyController.$inject = ["$scope"];
