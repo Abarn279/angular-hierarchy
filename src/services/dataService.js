@@ -45,9 +45,7 @@ function DataService() {
             {
                 "id": 3,
                 "name": "Arizona",
-                "children": [
-                    {}
-                ]
+                "children": []
             }
         ]
     }

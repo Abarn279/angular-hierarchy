@@ -6,7 +6,7 @@ angular
             templateUrl: 'src/directives/cityHierarchy.html',
             scope: {
                 items: '=',
-                whenclicked: '&'
+                whenclicked: '='
             },
             controllerAs: 'vm',
             restrict: 'EA',
@@ -17,8 +17,8 @@ angular
 function CityHierarchyController($scope) {
     var vm = this;
 
-    var cityClicked = function($event) {
-        vm.whenClicked($event);
+    vm.cityClicked = function(item) {
+        vm.whenclicked(item);
     }
 }
 CityHierarchyController.$inject = ["$scope"];
