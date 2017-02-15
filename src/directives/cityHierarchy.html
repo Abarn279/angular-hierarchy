@@ -1,0 +1,7 @@
+<ul>
+    <li ng-repeat="item in vm.items">
+        <a ng-click="vm.cityClicked($event);">{{item.name}}</a>
+
+        <city-hierarchy ng-if="item.children" items="item.children" whenclicked="vm.whenClicked"></city-hierarchy>
+    </li>
+</ul>
