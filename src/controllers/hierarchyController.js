@@ -21,7 +21,8 @@ function HierarchyController(ds) {
 
     function search() {
         if (!vm.searchTerm) {
-            vm.activeData = vm.data.slice();
+            // Cheeky deep copy
+            vm.activeData = JSON.parse(JSON.stringify(vm.data));
             return;
         }
         vm.activeData = [];

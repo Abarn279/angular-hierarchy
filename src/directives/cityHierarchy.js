@@ -20,6 +20,7 @@ function CityHierarchyController($scope) {
     var vm = this;
 
     vm.cityClicked = function(item) {
+        item.active = true;
         vm.whenclicked(item);
     }
 }

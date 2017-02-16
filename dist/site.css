@@ -72,3 +72,8 @@ footer {
   border: 1px solid #ccc; }
   .selection-item:hover {
     text-decoration: line-through; }
+
+a.disabled {
+  color: grey;
+  cursor: default;
+  text-decoration: none; }

@@ -90,3 +90,9 @@ footer {
         text-decoration: line-through;
     }
 }
+
+a.disabled {
+    color: grey;
+    cursor: default;
+    text-decoration: none;
+}

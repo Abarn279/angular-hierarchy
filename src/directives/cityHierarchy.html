@@ -1,6 +1,6 @@
 <ul>
     <li ng-repeat="item in vm.items">
-        <a href ng-click="vm.cityClicked(item);">{{item.name}}</a>
+        <a href ng-click="vm.cityClicked(item);" ng-class="item.active ? 'disabled' : ''">{{item.name}}</a>
         <city-hierarchy ng-if="item.children" items="item.children" whenclicked="vm.whenclicked"></city-hierarchy>
     </li>
 </ul>

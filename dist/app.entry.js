@@ -43473,7 +43473,8 @@
 	
 	    function search() {
 	        if (!vm.searchTerm) {
-	            vm.activeData = vm.data.slice();
+	            // Cheeky deep copy
+	            vm.activeData = JSON.parse(JSON.stringify(vm.data));
 	            return;
 	        }
 	        vm.activeData = [];
@@ -60650,6 +60651,7 @@
 	    var vm = this;
 	
 	    vm.cityClicked = function(item) {
+	        item.active = true;
 	        vm.whenclicked(item);
 	    }
 	}
@@ -60682,6 +60684,7 @@
 	    var vm = this;
 	
 	    vm.removeSelection = function(selection) {
+	        selection.active = false;
 	        _.remove(vm.selections, function(i) {
 	            return selection.id === i.id;
 	        })

@@ -22,6 +22,7 @@ function ItemInputController($scope) {
     var vm = this;
 
     vm.removeSelection = function(selection) {
+        selection.active = false;
         _.remove(vm.selections, function(i) {
             return selection.id === i.id;
         })
