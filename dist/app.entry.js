@@ -54,7 +54,7 @@
 	        '      <input class="form-control" placeholder="Enter a location name to filter" type="text" ng-model="ctrl.searchTerm" ng-change="ctrl.search()"/>' +
 	        '    </form>' +
 	        '    <city-hierarchy items="ctrl.activeData" whenclicked="ctrl.whenClicked"></city-hierarchy>' +
-	        '    <item-input selections="ctrl.selectedItems"></item-input>' +
+	        '    <item-input selections="ctrl.selectedItems" whenclicked="ctrl.whenDeselected"></item-input>' +
 	        '  </div>'
 	    );
 	
@@ -43469,12 +43469,13 @@
 	
 	    // Functions
 	    vm.whenClicked = whenClicked;
+	    vm.whenDeselected = whenDeselected;
 	    vm.search = search;
 	
 	    function search() {
 	        if (!vm.searchTerm) {
 	            // Cheeky deep copy
-	            vm.activeData = JSON.parse(JSON.stringify(vm.data));
+	            vm.activeData = vm.data;
 	            return;
 	        }
 	        vm.activeData = [];
@@ -43488,11 +43489,20 @@
 	    }
 	
 	    function whenClicked(item) {
+	        item.active = true;
 	        if (!_.some(vm.selectedItems, function(i) {
 	                return item.id === i.id;
 	            })) {
 	            vm.selectedItems.push(item);
 	        }
+	    }
+	
+	    function whenDeselected(item) {
+	        item.active = false;
+	        _.remove(vm.selectedItems, function(i) {
+	            return item.id === i.id;
+	        });
+	        vm.search();
 	    }
 	
 	    // Takes in current tree, returns tree with search term applied
@@ -60651,7 +60661,6 @@
 	    var vm = this;
 	
 	    vm.cityClicked = function(item) {
-	        item.active = true;
 	        vm.whenclicked(item);
 	    }
 	}
@@ -60669,7 +60678,8 @@
 	            controller: ItemInputController,
 	            templateUrl: 'src/directives/itemInput.html',
 	            scope: {
-	                selections: "="
+	                selections: "=",
+	                whenclicked: "="
 	            },
 	            controllerAs: 'vm',
 	            restrict: 'E',
@@ -60682,13 +60692,6 @@
 	
 	function ItemInputController($scope) {
 	    var vm = this;
-	
-	    vm.removeSelection = function(selection) {
-	        selection.active = false;
-	        _.remove(vm.selections, function(i) {
-	            return selection.id === i.id;
-	        })
-	    }
 	}
 
 /***/ },

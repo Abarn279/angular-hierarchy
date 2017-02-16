@@ -8,7 +8,7 @@ $(".acc-city-hierarchy")
         '      <input class="form-control" placeholder="Enter a location name to filter" type="text" ng-model="ctrl.searchTerm" ng-change="ctrl.search()"/>' +
         '    </form>' +
         '    <city-hierarchy items="ctrl.activeData" whenclicked="ctrl.whenClicked"></city-hierarchy>' +
-        '    <item-input selections="ctrl.selectedItems"></item-input>' +
+        '    <item-input selections="ctrl.selectedItems" whenclicked="ctrl.whenDeselected"></item-input>' +
         '  </div>'
     );
 

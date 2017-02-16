@@ -17,12 +17,13 @@ function HierarchyController(ds) {
 
     // Functions
     vm.whenClicked = whenClicked;
+    vm.whenDeselected = whenDeselected;
     vm.search = search;
 
     function search() {
         if (!vm.searchTerm) {
             // Cheeky deep copy
-            vm.activeData = JSON.parse(JSON.stringify(vm.data));
+            vm.activeData = vm.data;
             return;
         }
         vm.activeData = [];
@@ -36,11 +37,20 @@ function HierarchyController(ds) {
     }
 
     function whenClicked(item) {
+        item.active = true;
         if (!_.some(vm.selectedItems, function(i) {
                 return item.id === i.id;
             })) {
             vm.selectedItems.push(item);
         }
+    }
+
+    function whenDeselected(item) {
+        item.active = false;
+        _.remove(vm.selectedItems, function(i) {
+            return item.id === i.id;
+        });
+        vm.search();
     }
 
     // Takes in current tree, returns tree with search term applied
